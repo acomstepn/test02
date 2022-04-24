@@ -49,7 +49,7 @@ router.get('/', async (req, res, next) => {
 		} else if (kashi_kamoku === '借入金') {
 			acom += kashi_price;
 		}
-		const text = `${GST/100} GST ${GMT/1000000} GMT ${SOL/1000000} SOL`;
+		const text = `${GST/100} GST ${GMT/1000000} GMT ${SOL/1000000} SOL 負債 ${acom}`;
 		const wallet = '';
 		items.unshift({ id: id, kari_kamoku: kari_kamoku, kari_price: kari_price, kashi_kamoku: kashi_kamoku, kashi_price: kashi_price, tekiyo: tekiyo, text: text, wallet: wallet, createdAt: createdAt });
 	});
