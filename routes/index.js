@@ -11,7 +11,7 @@ StepnDb.sync({force:false});
 router.get('/', async (req, res, next) => {
 	const rows = await StepnDb.findAll();
 	let GST = 0, GMT = 0, SOL = 0;
-	let WGST = 0, WSOL = 0;
+	let WGST = 0, WGMT = 0, WSOL = 0, USDC = 0;
 	let acom = 0;
 	const items = [];
 
@@ -31,8 +31,12 @@ router.get('/', async (req, res, next) => {
 			SOL += kari_price*1000000;
 		} else if (kari_kamoku === 'Wallet GST') {
 			WGST += kari_price*1000000000;
+		} else if (kari_kamoku === 'Wallet GMT') {
+			WGMT += kari_price*1000000;
 		} else if (kari_kamoku === 'Wallet SOL') {
 			WSOL += kari_price*1000000000;
+		} else if (kari_kamoku === 'Wallet USDC') {
+			USDC += kari_price*1;
 		} else if (kari_kamoku === '借入金') {
 			acom -= kari_price;
 		}
@@ -44,14 +48,37 @@ router.get('/', async (req, res, next) => {
 			SOL -= kashi_price*1000000;
 		} else if (kashi_kamoku === 'Wallet GST') {
 			WGST -= kashi_price*1000000000;
+		} else if (kashi_kamoku === 'Wallet GMT') {
+			WGMT -= kashi_price*1000000;
 		} else if (kashi_kamoku === 'Wallet SOL') {
 			WSOL -= kashi_price*1000000000;
+		} else if (kashi_kamoku === 'Wallet USDC') {
+			USDC -= kashi_price*1;
 		} else if (kashi_kamoku === '借入金') {
 			acom += kashi_price;
 		}
 		const text = `${GST/100} GST ${GMT/1000000} GMT ${SOL/1000000} SOL 負債 ${acom}`;
 		const wallet = '';
-		items.unshift({ id: id, kari_kamoku: kari_kamoku, kari_price: kari_price, kashi_kamoku: kashi_kamoku, kashi_price: kashi_price, tekiyo: tekiyo, text: text, wallet: wallet, createdAt: createdAt });
+		items.unshift({
+			id: id,
+			kari_kamoku: kari_kamoku,
+			kari_price: kari_price,
+			kashi_kamoku: kashi_kamoku,
+			kashi_price: kashi_price,
+			tekiyo: tekiyo,
+
+			gst: GST/100,
+			gmt: GMT/1000000,
+			sol: SOL/1000000,
+
+			wsol: WSOL/1000000000,
+			wgst: WGST/1000000000,
+			wgmt: WGMT/1000000,
+			usdc: USDC,
+
+			acom: acom,
+			createdAt: createdAt
+		});
 	});
 
 	res.render('stepn', { title: title, items: items });

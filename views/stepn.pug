@@ -3,13 +3,23 @@ extends layout
 block content
 	table(border=1)
 		tr
-			th 日時
-			th 借方勘定科目
-			th 借方金額
-			th 貸方勘定科目
-			th 貸方金額
-			th 摘要
-			th 残高
+			th(ROWSPAN=2) 日時
+			th(ROWSPAN=2) 借方勘定科目
+			th(ROWSPAN=2) 借方金額
+			th(ROWSPAN=2) 貸方勘定科目
+			th(ROWSPAN=2) 貸方金額
+			th(ROWSPAN=2) 摘要
+			th(COLSPAN=3) Spending
+			th(COLSPAN=4) Wallet
+			th(ROWSPAN=2) 負債
+		tr
+			th GST
+			th GMT
+			th SOL
+			th SOL
+			th GST
+			th GMT
+			th USDC
 		each item in items
 			tr
 				td= item.createdAt
@@ -18,7 +28,14 @@ block content
 				td= item.kashi_kamoku
 				td= item.kashi_price
 				td= item.tekiyo
-				td= item.text
+				td= item.gst
+				td= item.gmt
+				td= item.sol
+				td= item.wsol
+				td= item.wgst
+				td= item.wgmt
+				td= item.usdc
+				td= item.acom
 	table(border=1)
 		tr
 			td(rowspan=2) 資産
