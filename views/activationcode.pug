@@ -6,6 +6,6 @@ block content
 			th date
 			th code
 		each item in items
-			tr
+			tr(BGCOLOR=item.enable ? "#ffffff" : '#e0e0e0')
 				td= item.createdAt
 				td= item.code
