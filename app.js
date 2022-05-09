@@ -6,6 +6,9 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const idn = require('./modules/idn');
 
+const ActivationCode = require('./models/activationcode');
+ActivationCode.sync();
+
 const indexRouter = require('./routes/index');
 const activationcodeRouter = require('./routes/activationcode');
 

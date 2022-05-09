@@ -1,11 +1,28 @@
 extends layout
 
 block content
+	form(method="post" action="/activationcode")
+		input(type="hidden" name="cmd" value="add")
+		input(type="number" name="code")
+		button(type="submit") add
+	- var n = 0
 	table(border=1)
 		tr
+			th no
 			th date
 			th code
+			th state
 		each item in items
-			tr(BGCOLOR=item.enable ? "#ffffff" : '#e0e0e0')
+			tr(bgcolor=item.enable ? "#ffffff" : '#e0e0e0')
+				td= ++n
 				td= item.createdAt
 				td= item.code
+				if item.enable
+					td(align="center")
+						form(method="post" action="/activationcode")
+							input(type="hidden" name="cmd" value="disable")
+							input(type="hidden" name="code" value=item.code)
+							button(type="submit") x
+				else
+					td(align="center") Used
+				endif
