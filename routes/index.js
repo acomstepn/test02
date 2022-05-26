@@ -47,7 +47,7 @@ router.get('/', async (req, res, next) => {
 		const kari_price = Math.round(row.kari_price*1000000000);
 		const kashi_kamoku = row.kashi_kamoku;
 		const kashi_price = Math.round(row.kashi_price*1000000000);
-		const tekiyo = row.tekiyo;
+		const tekiyo = row.tekiyo.replace(/#(\d+)/g, '<a href="/shoe/$1">#$1</a>');
 		const createdAt = moment(row.createdAt).tz('Asia/Tokyo').format('YYYY-MM-DD HH:mm');
 		if (kari_kamoku === 'Spending GST') {
 			GST += kari_price;
@@ -109,10 +109,11 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/shoe/:id', async (req, res, next) => {
+	const id = req.params.id;
 	const rows = await StepnDb.findAll({
 		where: {
 			tekiyo: {
-				[Op.like]: '%#584073987%'
+				[Op.like]: `%#${id}%`
 			}
 		}
 	});
