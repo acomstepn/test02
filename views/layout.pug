@@ -1,9 +1,11 @@
 doctype html
-html
+html(lang='jp')
 	head
-		title= title
+		title カードローン地獄の成れの果て
 		link(rel='stylesheet', href='/stylesheets/style.css')
 	body
+		- var idn = (global.idn) ? global.idn : '#'
+		- var adminId = (process.env.ADMIN_ID) ? process.env.ADMIN_ID : '$'
 		table(border=0)
 			tr
 				td(COLSPAN=3 style='text-align:center') ⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇⇩⬇
@@ -15,7 +17,7 @@ html
 						a(href=`https://area34.smp.ne.jp/area/cl/174095/878N8J42IhB1/M?S=lerhm8pfrf` target='_blank')
 							image(src=`https://nyukai.online-a.com/acwebp/staticcontents/pc/img/header/header_identity.gif` width=585)
 				td
-					h1 ⬅絶対押すなよ！
+					h1= `⬅絶対押すなよ！${(idn == adminId) ? '!' : ''}`
 			tr
 				td(COLSPAN=3 style='text-align:center') ⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆⇧⬆
 		block content

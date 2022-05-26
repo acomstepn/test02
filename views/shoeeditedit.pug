@@ -1,0 +1,67 @@
+extends layout
+
+block content
+	- var id = shoe ? (shoe.id ? shoe.id : 0) : 0
+	- var enable = shoe ? shoe.enable : false
+	- var image = shoe ? shoe.image : false
+	- var effi = shoe ? (shoe.baseeffi ? shoe.baseeffi : 10) : 0
+	- var luck = shoe ? (shoe.baseluck ? shoe.baseluck : 10) : 0
+	- var comf = shoe ? (shoe.basecomf ? shoe.basecomf : 10) : 0
+	- var resi = shoe ? (shoe.baseresi ? shoe.baseresi : 10) : 0
+	- var createdAt = (shoe ? (shoe.createdAt ? moment(shoe.createdAt) : moment()) : moment()).tz('Asia/Tokyo').format('YYYY-MM-DD HH:mm:ss')
+	form(action='/shoeedit/update' method='post' enctype='multipart/form-data')
+		table(border=1)
+			tr
+				if (shoe)
+					if (shoe.id)
+						td
+							img(width=128 height=96 src=`${imgdir}/${shoe.id}.png` alt="NoImage")
+					else
+						td NoImage
+				else
+					td 画像
+				td
+					input(type='file' accept='image/*' name='file')
+			tr
+				td id
+				td
+					span ##{id}
+					input(type='text' name='id' value=id)
+			tr
+				td enable
+				td
+					input(hidden=false type='checkbox' name='enable' checked=enable)
+			tr
+				td image
+				td
+					input(hidden=false type='checkbox' name='image' checked=image)
+			tr
+				td Class
+				td
+					span= shoe.class
+					select(name='class')
+						option(selected=shoe.class==0 value=0) Walker
+						option(selected=shoe.class==1 value=1) Jogger
+						option(selected=shoe.class==2 value=2) Runner
+						option(selected=shoe.class==3 value=3) Trainer
+			tr
+				td Efficiency
+				td
+					input(type='text' name='effi' size=1 value=effi/10)
+			tr
+				td Luck
+				td
+					input(type='text' name='luck' size=1 value=luck/10)
+			tr
+				td Comfort
+				td
+					input(type='text' name='comf' size=1 value=comf/10)
+			tr
+				td Resilience
+				td
+					input(type='text' name='resi' size=1 value=resi/10)
+			tr
+				td createdAt
+				td
+					input(type='text' name='createdAt' value=createdAt)
+		button(type='submit') 送信

@@ -1,0 +1,51 @@
+extends layout
+
+block content
+	- var createdAt = moment().tz('Asia/Tokyo').format('YYYY-MM-DD HH:mm')
+	form(action='/shoeedit/update' method='post' enctype='multipart/form-data')
+		table(border=1)
+			tr
+				td 画像
+				td
+					input(type='file' accept='image/*' name='file')
+			tr
+				td id
+				td
+					input(type='text' name='id' value=)
+			tr
+				td enable
+				td
+					input(hidden=false type='checkbox' name='enable' checked)
+			tr
+				td image
+				td
+					input(hidden=true type='checkbox' name='image' checked=false)
+			tr
+				td Class
+				td
+					select(name='class')
+						option(value=0 selected) Walker
+						option(value=1) Jogger
+						option(value=2) Runner
+						option(value=3) Trainer
+			tr
+				td Efficiency
+				td
+					input(type='text' name='effi' size=1 value=)
+			tr
+				td Luck
+				td
+					input(type='text' name='luck' size=1 value=)
+			tr
+				td Comfort
+				td
+					input(type='text' name='comf' size=1 value=)
+			tr
+				td Resilience
+				td
+					input(type='text' name='resi' size=1 value=)
+			tr
+				td createdAt
+				td
+					input(type='text' name='createdAt' value=createdAt)
+		button(type='submit') 送信

@@ -6,10 +6,17 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const idn = require('./modules/idn');
 
+global.isAdmin = (req) => (req.cookies.idn || '#') === (process.env.ADMIN_ID || '$');
+
 const ActivationCode = require('./models/activationcode');
+const Shoe= require('./models/shoe');
+const Stepn = require('./models/stepn');
 ActivationCode.sync();
+Shoe.sync();
+Stepn.sync();
 
 const indexRouter = require('./routes/index');
+const shoeEditRouter = require('./routes/shoeedit');
 const activationcodeRouter = require('./routes/activationcode');
 
 const app = express();
@@ -26,6 +33,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(idn());
 
 app.use('/', indexRouter);
+app.use('/shoeedit', shoeEditRouter);
 app.use('/activationcode', activationcodeRouter);
 
 // catch 404 and forward to error handler
