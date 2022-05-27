@@ -16,7 +16,9 @@ if (!fs.existsSync(destDir)) {
 }
 
 router.get('/', async (req, res, next) => {
-	const items = await Shoe.findAll();
+	const items = await Shoe.findAll({
+		order: [['createdAt', 'DESC']]
+	});
 	res.render('shoeedit', { moment: moment, imgdir: imgdir, items: items });
 });
 
