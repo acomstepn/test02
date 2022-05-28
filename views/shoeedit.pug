@@ -18,9 +18,9 @@ block content
 			th luck
 			th comf
 			th resi
-			td createdAt
+			th createdAt
 		each item in items
-			tr
+			tr(bgcolor=(item.enable ? 'ffffff' : 'bfbfbf'))
 				td
 					a(href=`shoeedit/${item.id}`) ##{item.id}
 				td= item.enable
@@ -29,7 +29,7 @@ block content
 						image(width=32 height=24 src=`${imgdir}/${item.id}.png`)
 					else
 						|noimage
-				td= ['Walker','Jogger','Runner','Trainer'][item.class]
+				td= item.type == 0 ? ['Walker','Jogger','Runner','Trainer'][item.class] : 'Shoebox'
 				td= item.level
 				td= item.baseeffi/10
 				td= item.baseluck/10

@@ -8,7 +8,7 @@ block content
 	- var luck = shoe ? (shoe.baseluck ? shoe.baseluck : 10) : 0
 	- var comf = shoe ? (shoe.basecomf ? shoe.basecomf : 10) : 0
 	- var resi = shoe ? (shoe.baseresi ? shoe.baseresi : 10) : 0
-	- var createdAt = (shoe ? (shoe.createdAt ? moment(shoe.createdAt) : moment()) : moment()).tz('Asia/Tokyo').format('YYYY-MM-DD HH:mm:ss')
+	- var createdAt = (shoe ? (shoe.createdAt ? moment(shoe.createdAt) : moment()) : moment()).format('YYYY-MM-DD HH:mm')
 	form(action='/shoeedit/update' method='post' enctype='multipart/form-data')
 		table(border=1)
 			tr
@@ -26,24 +26,26 @@ block content
 				td id
 				td
 					span ##{id}
-					input(type='text' name='id' value=id)
+					input(hidden=true name='id' value=id)
 			tr
 				td enable
 				td
 					input(hidden=false type='checkbox' name='enable' checked=enable)
+					input(hidden=true type='checkbox' name='image' checked=image)
 			tr
-				td image
+				td Type
 				td
-					input(hidden=false type='checkbox' name='image' checked=image)
+					select(name='type')
+						option(value=0 selected=shoe.type==0) Sneaker
+						option(value=1 selected=shoe.type==1) Shoebox
 			tr
 				td Class
 				td
-					span= shoe.class
 					select(name='class')
-						option(selected=shoe.class==0 value=0) Walker
-						option(selected=shoe.class==1 value=1) Jogger
-						option(selected=shoe.class==2 value=2) Runner
-						option(selected=shoe.class==3 value=3) Trainer
+						option(value=0 selected=shoe.class==0) Walker
+						option(value=1 selected=shoe.class==1) Jogger
+						option(value=2 selected=shoe.class==2) Runner
+						option(value=3 selected=shoe.class==3) Trainer
 			tr
 				td Efficiency
 				td

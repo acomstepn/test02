@@ -45,6 +45,7 @@ router.post('/update', (req, res, next) => {
 			id: id,
 			enable: req.body.enable ? true : false,
 			image: req.body.image ? true : false,
+			type: req.body.type,
 			class: req.body.class,
 			baseeffi: 10*req.body.effi,
 			baseluck: 10*req.body.luck,
