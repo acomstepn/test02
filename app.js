@@ -17,6 +17,7 @@ Stepn.sync();
 
 const indexRouter = require('./routes/index');
 const shoeEditRouter = require('./routes/shoeedit');
+const mintsRouter = require('./routes/mints');
 const activationcodeRouter = require('./routes/activationcode');
 
 const app = express();
@@ -34,6 +35,7 @@ app.use(idn());
 
 app.use('/', indexRouter);
 app.use('/shoeedit', shoeEditRouter);
+app.use('/mints', mintsRouter);
 app.use('/activationcode', activationcodeRouter);
 
 // catch 404 and forward to error handler

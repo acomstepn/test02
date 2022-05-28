@@ -1,0 +1,29 @@
+extends layout
+
+block content
+	table(border=1)
+		tr
+			th 日時
+			th GST
+			th GMT
+			th(COLSPAN=5)
+		each item in items
+			tr
+				td(ROWSPAN=3)= item.createdAt
+				td(ROWSPAN=3)= item.gst
+				td(ROWSPAN=3)= item.gmt
+				- var n = 0
+				each shoe in item.shoes
+					td!= `<img src="/images/shoes/${shoe.id.slice(1)}.png" width=128 height=96>`
+					if (n == 0)
+						td(ROWSPAN=3) ❎
+					if (n == 1)
+						td(ROWSPAN=3) ⏩ 
+					- n++
+			tr
+				each shoe in item.shoes
+					td!= `<a href="/shoe/${shoe.id.slice(1)}">${shoe.id}</a>`
+			tr
+				each shoe in item.shoes
+					td
+						strong= shoe.type==0 ? ['Walker', 'Jogger', 'Runner', 'Trainer'][shoe.class] : 'Shoebox'
