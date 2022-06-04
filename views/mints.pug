@@ -26,4 +26,5 @@ block content
 			tr
 				each shoe in item.shoes
 					td
-						strong= shoe.type==0 ? ['Walker', 'Jogger', 'Runner', 'Trainer'][shoe.class] : 'Shoebox'
+						font(color=['#000000', '#00c000', '#6060ff', '#a000e0', '#ff8000'][shoe.quality])
+							strong= shoe.type==0 ? ['Walker', 'Jogger', 'Runner', 'Trainer'][shoe.class] : 'Shoebox'

@@ -13,6 +13,7 @@ block content
 			th enable
 			th image
 			th class
+			th quality
 			th level
 			th effi
 			th luck
@@ -30,6 +31,7 @@ block content
 					else
 						|noimage
 				td= item.type == 0 ? ['Walker','Jogger','Runner','Trainer'][item.class] : 'Shoebox'
+				td= ['Common','Unommon','Runner','Trainer'][item.quality]
 				td= item.level
 				td= item.baseeffi/10
 				td= item.baseluck/10

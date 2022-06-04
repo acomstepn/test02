@@ -9,7 +9,7 @@ router.get('/', async (req, res, next) => {
 	const shoeData = [];
 	const rowsShoe = await Shoe.findAll();
 	rowsShoe.forEach(row => {
-			shoeData[`#${row.id}`] = { id: `#${row.id}`, type: row.type, class: row.class};
+			shoeData[`#${row.id}`] = { id: `#${row.id}`, type: row.type, class: row.class, quality: row.quality};
 	});
 
 	const rows = await Stepn.findAll({

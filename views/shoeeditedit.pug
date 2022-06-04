@@ -10,6 +10,7 @@ block content
 	- var resi = shoe ? (shoe.baseresi ? shoe.baseresi : 10) : 0
 	- var createdAt = (shoe ? (shoe.createdAt ? moment(shoe.createdAt) : moment()) : moment()).format('YYYY-MM-DD HH:mm')
 	form(action='/shoeedit/update' method='post' enctype='multipart/form-data')
+		input(hidden=true type='checkbox' name='image' checked=image)
 		table(border=1)
 			tr
 				if (shoe)
@@ -31,7 +32,6 @@ block content
 				td enable
 				td
 					input(hidden=false type='checkbox' name='enable' checked=enable)
-					input(hidden=true type='checkbox' name='image' checked=image)
 			tr
 				td Type
 				td
@@ -46,6 +46,15 @@ block content
 						option(value=1 selected=shoe.class==1) Jogger
 						option(value=2 selected=shoe.class==2) Runner
 						option(value=3 selected=shoe.class==3) Trainer
+			tr
+				td Quality
+				td
+					select(name='quality')
+						option(value=0 selected=shoe.quality==0) Common
+						option(value=1 selected=shoe.quality==1) Uncommon
+						option(value=2 selected=shoe.quality==2) Rare
+						option(value=3 selected=shoe.quality==3) Epic
+						option(value=4 selected=shoe.quality==4) Legendary
 			tr
 				td Efficiency
 				td
