@@ -7,6 +7,13 @@ block content
 			padding: 2px;
 			margin: 4px;
 			border: 1px solid #000000;
+			background-color: #eeeeee;
+		}
+		.sol {
+			background: #e0ffff
+		}
+		.bsc {
+			background: #ffffe0
 		}
 	script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js')
 	script.
@@ -44,27 +51,35 @@ block content
 		tr
 			th GST
 			th GMT
-			th SOL
-			th SOL
+			th SOL/BNB
+			th SOL/BNB
 			th GST
 			th GMT
 			th USDC
 		each item in items
 			tr
-				td= item.createdAt
-				td= item.kari_kamoku
-				td= item.kari_price
-				td= item.kashi_kamoku
-				td= item.kashi_price
-				td!= item.tekiyo
-				td= item.gst
-				td= item.gmt
-				td= item.sol
-				td= item.wsol
-				td= item.wgst
-				td= item.wgmt
-				td= item.usdc
-				td= item.acom
+				td(ROWSPAN=2)= item.createdAt
+				td(ROWSPAN=2)= item.kari_kamoku
+				td(ROWSPAN=2)= item.kari_price
+				td(ROWSPAN=2)= item.kashi_kamoku
+				td(ROWSPAN=2)= item.kashi_price
+				td(ROWSPAN=2)!= item.tekiyo
+				td.sol= item.solana.gst
+				td.sol= item.solana.gmt
+				td.sol= item.solana.sol
+				td.sol= item.solana.wsol
+				td.sol= item.solana.wgst
+				td.sol= item.solana.wgmt
+				td.sol= item.solana.usdc
+				td(ROWSPAN=2)= item.acom
+			tr.bsc
+				td= item.bsc.gst
+				td= item.bsc.gmt
+				td= item.bsc.bnb
+				td= item.bsc.wbnb
+				td= item.bsc.wgst
+				td= item.bsc.wgmt
+				td= item.bsc.usdc
 	table(border=1)
 		tr
 			td(rowspan=2) 資産

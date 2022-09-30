@@ -38,6 +38,8 @@ router.get('/', async (req, res, next) => {
 	const rows = await StepnDb.findAll();
 	let GST = 0, GMT = 0, SOL = 0;
 	let WGST = 0, WGMT = 0, WSOL = 0, USDC = 0;
+	let bGST = 0, bGMT = 0, BNB = 0;
+	let bWGST = 0, bWGMT = 0, WBNB = 0, bUSDC = 0;
 	let acom = 0;
 	const items = [];
 
@@ -63,6 +65,22 @@ router.get('/', async (req, res, next) => {
 			WSOL += kari_price;
 		} else if (kari_kamoku === 'Wallet USDC') {
 			USDC += kari_price;
+
+		} else if (kari_kamoku === 'Spending bGST') {
+			bGST += kari_price;
+		} else if (kari_kamoku === 'Spending bGMT') {
+			bGMT += kari_price;
+		} else if (kari_kamoku === 'Spending BNB') {
+			BNB += kari_price;
+		} else if (kari_kamoku === 'Wallet bGST') {
+			bWGST += kari_price;
+		} else if (kari_kamoku === 'Wallet bGMT') {
+			bWGMT += kari_price;
+		} else if (kari_kamoku === 'Wallet BNB') {
+			WBNB += kari_price;
+		} else if (kari_kamoku === 'Wallet bUSDC') {
+			bUSDC += kari_price;
+
 		} else if (kari_kamoku === '借入金') {
 			acom -= kari_price;
 		}
@@ -80,6 +98,22 @@ router.get('/', async (req, res, next) => {
 			WSOL -= kashi_price;
 		} else if (kashi_kamoku === 'Wallet USDC') {
 			USDC -= kashi_price;
+
+		} else if (kashi_kamoku === 'Spending bGST') {
+			bGST -= kashi_price;
+		} else if (kashi_kamoku === 'Spending bGMT') {
+			bGMT -= kashi_price;
+		} else if (kashi_kamoku === 'Spending BNB') {
+			BNB -= kashi_price;
+		} else if (kashi_kamoku === 'Wallet bGST') {
+			bWGST -= kashi_price;
+		} else if (kashi_kamoku === 'Wallet bGMT') {
+			bWGMT -= kashi_price;
+		} else if (kashi_kamoku === 'Wallet BNB') {
+			WBNB -= kashi_price;
+		} else if (kashi_kamoku === 'Wallet bUSDC') {
+			bUSDC -= kashi_price;
+
 		} else if (kashi_kamoku === '借入金') {
 			acom += kashi_price;
 		}
@@ -91,14 +125,24 @@ router.get('/', async (req, res, next) => {
 			kashi_price: row.kashi_price,
 			tekiyo: tekiyo,
 
-			gst: n2s(GST),
-			gmt: n2s(GMT),
-			sol: n2s(SOL),
-
-			wsol: n2s(WSOL),
-			wgst: n2s(WGST),
-			wgmt: n2s(WGMT),
-			usdc: n2s(USDC),
+			solana: {
+				gst: n2s(GST),
+				gmt: n2s(GMT),
+				sol: n2s(SOL),
+				wsol: n2s(WSOL),
+				wgst: n2s(WGST),
+				wgmt: n2s(WGMT),
+				usdc: n2s(USDC),
+			},
+			bsc: {
+				gst: n2s(bGST),
+				gmt: n2s(bGMT),
+				bnb: n2s(BNB),
+				wbnb: n2s(WBNB),
+				wgst: n2s(bWGST),
+				wgmt: n2s(bWGMT),
+				usdc: n2s(bUSDC),
+			},
 
 			acom: n2s(acom),
 			createdAt: createdAt
