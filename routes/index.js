@@ -132,7 +132,7 @@ router.get('/', async (req, res, next) => {
 				wsol: n2s(WSOL),
 				wgst: n2s(WGST),
 				wgmt: n2s(WGMT),
-				usdc: n2s(USDC),
+				usdc: n2s(USDC)
 			},
 			bsc: {
 				gst: n2s(bGST),
@@ -141,7 +141,7 @@ router.get('/', async (req, res, next) => {
 				wbnb: n2s(WBNB),
 				wgst: n2s(bWGST),
 				wgmt: n2s(bWGMT),
-				usdc: n2s(bUSDC),
+				usdc: n2s(bUSDC)
 			},
 
 			acom: n2s(acom),
@@ -163,6 +163,8 @@ router.get('/shoe/:id', async (req, res, next) => {
 	});
 	let GST = 0, GMT = 0, SOL = 0;
 	let WGST = 0, WGMT = 0, WSOL = 0, USDC = 0;
+	let bGST = 0, bGMT = 0, BNB = 0;
+	let bWGST = 0, bWGMT = 0, WBNB = 0, bUSDC = 0;
 	let acom = 0;
 	const items = [];
 
@@ -182,14 +184,24 @@ router.get('/shoe/:id', async (req, res, next) => {
 			kashi_price: row.kashi_price,
 			tekiyo: tekiyo,
 
-			gst: n2s(GST),
-			gmt: n2s(GMT),
-			sol: n2s(SOL),
-
-			wsol: n2s(WSOL),
-			wgst: n2s(WGST),
-			wgmt: n2s(WGMT),
-			usdc: n2s(USDC),
+			solana: {
+				gst: n2s(GST),
+				gmt: n2s(GMT),
+				sol: n2s(SOL),
+				wsol: n2s(WSOL),
+				wgst: n2s(WGST),
+				wgmt: n2s(WGMT),
+				usdc: n2s(USDC)
+			},
+			bsc: {
+				gst: n2s(bGST),
+				gmt: n2s(bGMT),
+				bnb: n2s(BNB),
+				wbnb: n2s(WBNB),
+				wgst: n2s(bWGST),
+				wgmt: n2s(bWGMT),
+				usdc: n2s(bUSDC)
+			},
 
 			acom: n2s(acom),
 			createdAt: createdAt
